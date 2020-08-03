@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Router from './Router'
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 import contactReducer from './components/store/contactReducer'
-const store = createStore(contactReducer, applyMiddleware(thunk));
+import {getFirebase, reduxReactFirebase} from 'react-redux-firebase';
+import firebase from './Firebase/config';
+import {getFirestore,reduxFirestore} from 'redux-firestore'
+
+const store = createStore(contactReducer, compose(
+  applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
+  reduxFirestore(firebase),
+  reduxReactFirebase(firebase)
+));
 
 ReactDOM.render(
   
