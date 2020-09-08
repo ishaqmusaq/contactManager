@@ -16,18 +16,26 @@ function Register(props) {
     return (
         <div>
             <h1>Register Now</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="email">
-                    <label>Email:</label>
-                    <input name="email" type="email" placeholder="email"/>
-                </div>
+            
+                <form  onSubmit={handleSubmit}>
+                    <div className="email">
+                        <label htmlFor="exampleDropdownFormEmail2">Email address</label>
+                        <input  name='email' type='email' className="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com"/>
+  </div>
+                        <div className="password">
+                            <label htmlFor="exampleDropdownFormPassword2">Password</label>
+                            <input type="password" name='password' className="form-control" id="exampleDropdownFormPassword2" placeholder="Password"/>
+  </div>
+                            <div className="form-group">
+                                <div className="form-check">
+                                    <input type="checkbox" className="form-check-input" id="dropdownCheck2"/>
+                                        <label className="form-check-label" htmlFor="dropdownCheck2">
+                                            Remember me
+      </label>
+    </div>
+                                </div>
+                                <button type="submit" className="btn btn-primary">Register</button>
 
-                <div className="password">
-                    <label>Password :</label>
-                    <input name="password" type="password" placeholder="password" />
-                </div>
-                <hr/>
-                <button type="submit"> join</button>
                 <hr />
                 <button onClick={props.loginWithGoogle}>
 

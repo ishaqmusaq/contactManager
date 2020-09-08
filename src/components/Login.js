@@ -19,25 +19,33 @@ function Login (props) {
             <h1>Login Now</h1>
             <form onSubmit={handleSubmit}>
                 <div className="email">
-                    <label>Email:</label>
-                    <input name="email" type="email" placeholder="email" />
+                    <label htmlFor="exampleDropdownFormEmail2">Email address</label>
+                    <input name='email' type='email' className="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" />
                 </div>
-
                 <div className="password">
-                    <label>Password :</label>
-                    <input name="password" type="password" placeholder="password" />
+                    <label htmlFor="exampleDropdownFormPassword2">Password</label>
+                    <input type="password" name='password' className="form-control" id="exampleDropdownFormPassword2" placeholder="Password" />
                 </div>
+                <div className="form-group">
+                    <div className="form-check">
+                        <input type="checkbox" className="form-check-input" id="dropdownCheck2" />
+                        <label className="form-check-label" htmlFor="dropdownCheck2">
+                            Remember me
+      </label>
+                    </div>
+                </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+
                 <hr />
-                <button type="submit"> Login</button>
-                <hr/>
                 <button onClick={props.loginWithGoogle}>
 
                     <img
-                    src="https://openthread.google.cn/images/ot-contrib-google.png"
-                    width="100"
-                     alt="google button "/>
+                        src="https://openthread.google.cn/images/ot-contrib-google.png"
+                        width="100"
+                        alt="google button " />
                 </button>
             </form>
+
 
         </div>
     );
