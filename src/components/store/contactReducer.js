@@ -2,13 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 
 const initialState = {
-    contacts: [{
-        Name: 'ishaq',
-        Surname: 'musah',
-        Phone: '+23355470719',
-        group: 'family'
-    }
-    ],
+    contacts: [],
 
 
 
@@ -30,18 +24,21 @@ const contactReducer = (state = initialState, action) => {
             };
 
         case "DELETE_CONTACT":
-            const fitlteredContact = state.contacts.filter(user => user.id !== action.payload);
+            const fitlteredContact = state.contacts.filter(contact => contact.id !== action.payload);
             return { ...state, contacts: fitlteredContact };
         case 'EDIT_CONTACT':
-            const editedContact = state.contacts.map(user => {
-                if (user.id === action.user_id) {
-                    return { ...user, ...action.updated_info }
+            const editedContact = state.contacts.map(contact => {
+                if (contact.id === action.contact_id) {
+                    return { ...contact, ...action.updated_info }
                 } else {
-                    return user;
+                    return contact;
                 }
 
             });
             return { ...state, contacts: editedContact }
+
+        case 'SET_ALL_CONTACTS':
+            return { contacts: action.payload }
         default:
             return state;
     }

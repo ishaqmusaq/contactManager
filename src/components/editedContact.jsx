@@ -6,10 +6,10 @@ class editedContact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Name: props.user.Name,
-            Surname: props.user.Surname,
-            Phone: props.user.Phone,
-            group: props.user.group
+            Name: props.contact.Name,
+            Surname: props.contact.Surname,
+            Phone: props.contact.Phone,
+            group: props.contact.group
 
         }
         this.id = props.match.params.id
@@ -101,7 +101,7 @@ class editedContact extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    user: state.contacts.find(user => user.id === ownProps.match.params.id)
+    contact: state.contactsState.contacts.find(contact => contact.id === ownProps.match.params.id)
 });
 
 const mapDispatchToProps = {

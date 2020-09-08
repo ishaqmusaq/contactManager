@@ -1,33 +1,69 @@
-export const addContact = (user) => {
+export const addContact = (contact) => {
      return (dispatch,state, {getFirestore})=>{
         getFirestore()
         .collection("Contacts")
-        .add(user)
+            .add({ ...contact, timestamp: getFirestore().FieldValue.serverTimestamp() })
         .then((doc)=>{
-            console.log(doc)
-            dispatch(
-                {
-    type:'ADD_CONTACT',
-    payload: user
- }
-            )
+            
+          
         });
  
 
     }
 }
 
-export const deleteContact = (user_id) => {
-    return {
-        type: 'DELETE_CONTACT',
-        payload: user_id
+export const deleteContact = (contact_id) => {
+    return (dispatch, state, { getFirestore }) => {
+        getFirestore()
+            .collection('contacts')
+            .doc(contact_id)
+            .delete()
+            .then(() => {
+
+            })
+    };
+}
+
+export const editContact = (contact_id, updated_info) => {
+    return (dispatch, state, { getFirestore }) => {
+        getFirestore()
+            .collection('contacts')
+            .doc(contact_id)
+            .set(updated_info)
+            .then(() => { })
+            .catch((err) => {
+
+            })
     }
 }
 
-export const editContact = (user_id, updated_info) => {
-    return {
-        type: 'EDIT_CONTACT',
-        user_id: user_id,
-        updated_info: updated_info
+export const getAllContacts = () => {
+    return (dispatch, state, { getFirestore }) => {
+        getFirestore()
+            .collection('contacts')
+            .orderBy('timestamp', 'desc')
+            .onSnapshot(
+                (snapshot) => {
+
+                    let contacts = [];
+                    snapshot.forEach((doc) => {
+
+
+                        contacts.push({ ...doc.data(), id: doc.id });
+                    });
+
+                    console.log(contacts);
+                    dispatch({
+                        type: 'SET_ALL_CONTACTS',
+                        payload: contacts
+                    })
+
+                },
+                (err) => {
+
+                }
+
+
+            )
     }
 }

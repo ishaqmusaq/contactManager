@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import { addContact, deleteContact } from './components/store/contactAction';
+import {connect} from 'react-redux';
+import {logoutContact} from './components/store/authAction'
+import { addContact, deleteContact,getAllContacts } from './components/store/contactAction';
 
 
 import ContactHomePage from './components/ContactHomePage';
@@ -31,15 +32,19 @@ group:'family'
     this.props.addContact(newContact)
   };
 
-  deleteContact = user_id => {
-    this.props.deleteContact(user_id)
+  deleteContact = contact_id => {
+    this.props.deleteContact(contact_id)
   };
+
+  componentDidMount() {
+    this.props.getAllContacts();
+  }
 
   render() {
     return (
       <div className='App'>
         {/**CONTACTS DATADBASE */}
-        
+        <button onClick={this.props.logoutContact}>Logout</button>
            <ContactHomePage  addContact = {this.addNewContact}/>
         <div className='contact_user_info'>
           {this.props.contacts.map((item)=>
@@ -72,13 +77,19 @@ group:'family'
   }
 }
 
-const mapStateToProps = (state) => ({
-  contacts: state.contacts
-})
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+  contacts: state.contactState.contacts
+}}
 
 const mapDispatchToProps = {
-  addContact: addContact,
-  deleteContact: deleteContact
+  addContact,
+  deleteContact,
+  getAllContacts,
+  logoutContact
+  
+
 }
 
 

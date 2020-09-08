@@ -6,12 +6,13 @@ import Router from './Router'
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
-import contactReducer from './components/store/contactReducer'
+import reducer from './components/store/mainReducer'
 import {getFirebase, reduxReactFirebase} from 'react-redux-firebase';
 import firebase from './Firebase/config';
 import {getFirestore,reduxFirestore} from 'redux-firestore'
 
-const store = createStore(contactReducer, compose(
+const store = createStore(reducer,
+   compose(
   applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
   reduxFirestore(firebase),
   reduxReactFirebase(firebase)

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import React from 'react';
 
 function contactInfoRef(props) {
-    deleteContact = user_id => {
-    this.props.deleteContact(user_id)
+    deleteContact = contact_id => {
+    this.props.deleteContact(contact_id)
   };
     return (
         <div>
@@ -17,7 +17,7 @@ function contactInfoRef(props) {
                 Phone={item.Phone}
                 group={item.group}
                 removeContact={this.deleteContact}
-            />} 
+            /> 
         </div>
     );
 }
