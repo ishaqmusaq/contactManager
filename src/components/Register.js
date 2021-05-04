@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { registerEmailWithPassword,loginWithGoogle } from './store/authAction';
- 
+import '../src/App.css'
+
 function Register(props) {
     if (!props.auth.isLoaded) return null;
     if (props.auth.uid) props.history.push('/');
@@ -11,6 +12,9 @@ function Register(props) {
         let password = e.target.elements.password.value;
         props.registerEmailWithPassword(email,password);
     };
+    const style={
+        
+    }
 
 
     return (

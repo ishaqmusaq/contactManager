@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {logoutContact} from './components/store/authAction'
 import { addContact, deleteContact,getAllContacts } from './components/store/contactAction';
-
+import '../src/App.css'
 
 import ContactHomePage from './components/ContactHomePage';
 import ContactInfo from './components/ContactInfo'
